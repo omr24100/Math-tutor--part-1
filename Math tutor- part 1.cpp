@@ -2,6 +2,7 @@
 //
 /* 
 File Name: Math tutor part 1
+GitHub URL: https://github.com/omr24100/Math-tutor--part-1.git
 Programmer: Olivia Ruiz 
 Date: 3/27
 Requirements: Write a program that can be used for students. Program should display
