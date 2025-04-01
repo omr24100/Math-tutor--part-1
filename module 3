@@ -1,0 +1,14 @@
+// Math tutor- part 1.cpp - Header file to declare functions
+#ifndef Math tutor- part 1.cpp
+#define Math tutor- part 1.cpp
+
+// Function to generate two random numbers
+void generateRandomNumbers(int &num1, int &num2);
+
+// Function to display the numbers and prompt the user to press any key
+void displayNumbers(int num1, int num2);
+
+// Function to get the sum of two numbers
+int getSum(int num1, int num2);
+
+#endif
