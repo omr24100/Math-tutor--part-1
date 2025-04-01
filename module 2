@@ -1,0 +1,27 @@
+// Math tutor- part 1.cpp - Implementation of the functions
+
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include "Math tutor- part 1.cpp"
+
+using namespace std;
+
+// Function to generate two random numbers between 1 and 100
+void generateRandomNumbers(int &num1, int &num2) {
+    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator with current time
+    num1 = rand() % 100 + 1;  // Random number between 1 and 100
+    num2 = rand() % 100 + 1;  // Random number between 1 and 100
+}
+
+// Function to display the numbers and prompt the user to press any key
+void displayNumbers(int num1, int num2) {
+    cout << "Solve the following:" << endl;
+    cout << num1 << " + " << num2 << " = ?" << endl;
+    cout << "Press any key to see the answer..." << endl;
+}
+
+// Function to return the sum of two numbers
+int getSum(int num1, int num2) {
+    return num1 + num2;
+}
