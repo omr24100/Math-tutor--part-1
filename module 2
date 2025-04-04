@@ -1,27 +1,38 @@
-// Math tutor- part 1.cpp - Implementation of the functions
-
-#include <iostream>
+#include "math_operations.h"
 #include <cstdlib>
 #include <ctime>
-#include "Math tutor- part 1.cpp"
+#include <stdexcept>
 
-using namespace std;
-
-// Function to generate two random numbers between 1 and 100
-void generateRandomNumbers(int &num1, int &num2) {
-    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator with current time
-    num1 = rand() % 100 + 1;  // Random number between 1 and 100
-    num2 = rand() % 100 + 1;  // Random number between 1 and 100
+// Initialize random number generator
+void initializeRandom() {
+    srand(time(0));  // Seed the random number generator
 }
 
-// Function to display the numbers and prompt the user to press any key
-void displayNumbers(int num1, int num2) {
-    cout << "Solve the following:" << endl;
-    cout << num1 << " + " << num2 << " = ?" << endl;
-    cout << "Press any key to see the answer..." << endl;
+// Generate a random number between 1 and 20
+int generateRandomNumber() {
+    return rand() % 20 + 1;  // Generates a number from 1 to 20
 }
 
-// Function to return the sum of two numbers
-int getSum(int num1, int num2) {
+// Add two numbers
+int addNumbers(int num1, int num2) {
     return num1 + num2;
 }
+
+// Subtract two numbers
+int subtractNumbers(int num1, int num2) {
+    return num1 - num2;
+}
+
+// Multiply two numbers
+int multiplyNumbers(int num1, int num2) {
+    return num1 * num2;
+}
+
+// Divide two numbers
+double divideNumbers(int num1, int num2) {
+    if (num2 == 0) {
+        throw std::invalid_argument("Cannot divide by zero");
+    }
+    return static_cast<double>(num1) / num2;
+}
+
