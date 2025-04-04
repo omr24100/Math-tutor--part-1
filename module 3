@@ -1,14 +1,35 @@
-// Math tutor- part 1.cpp - Header file to declare functions
-#ifndef Math tutor- part 1.cpp
-#define Math tutor- part 1.cpp
+#include "user_input.h"
+#include <iostream>
 
-// Function to generate two random numbers
-void generateRandomNumbers(int &num1, int &num2);
+using namespace std;
 
-// Function to display the numbers and prompt the user to press any key
-void displayNumbers(int num1, int num2);
+// Prompt the user for their answer
+int getUserAnswer() {
+    int answer;
+    cout << "Your answer: ";
+    cin >> answer;
+    return answer;
+}
 
-// Function to get the sum of two numbers
-int getSum(int num1, int num2);
+// Provide feedback on whether the user's answer was correct
+void printFeedback(int userAnswer, double correctAnswer) {
+    if (userAnswer == correctAnswer) {
+        cout << "Congratulations! You got it right!" << endl;
+    } else {
+        cout << "The correct answer is " << correctAnswer << "." << endl;
+    }
+}
 
-#endif
+// Display the main menu and get the user's choice
+int displayMenu() {
+    int choice;
+    cout << "\nMath Tutor Menu:" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Quit" << endl;
+    cout << "Please select an operation: ";
+    cin >> choice;
+    return choice;
+}
