@@ -1,43 +1,170 @@
 // Math tutor- part 1.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 /* 
-File Name: Math tutor part 1
-GitHub URL: https://github.com/omr24100/Math-tutor--part-1.git
+File Name: Math tutor part 3
 Programmer: Olivia Ruiz 
 Date: 3/27
-Requirements: Write a program that can be used for students. Program should display
-2 randome number to be added. The program will wait until key is pressed then display the answer. 
+Requirements: Allow the user to select addition, subtraction, multiplication or division. 
+The final sleection should let the user close the program. After the math problem is solved,
+the program should display the menu again and user choses to quit.  
 
 */
 
-#include <iostream>
+#define MATH_OPERATIONS_H
+
+int generateRandomNumber();
+int addNumbers(int num1, int num2);
+int subtractNumbers(int num1, int num2);
+int multiplyNumbers(int num1, int num2);
+double divideNumbers(int num1, int num2);
+void initializeRandom();  
+
+
+#include <ctime>
+#include <stdexcept>
+
+
+void initializeRandom() {
+    srand(time(0));  
+}
+
+
+int generateRandomNumber() {
+    return rand() % 20 + 1; 
+}
+
+
+int addNumbers(int num1, int num2) {
+    return num1 + num2;
+}
+
+int subtractNumbers(int num1, int num2) {
+    return num1 - num2;
+}
+
+
+int multiplyNumbers(int num1, int num2) {
+    return num1 * num2;
+}
+
+
+double divideNumbers(int num1, int num2) {
+    if (num2 == 0) {
+        throw std::invalid_argument("Cannot divide by zero");
+    }
+    return static_cast<double>(num1) / num2;
+}
+
+#define USER_INPUT_H
+
+int getUserAnswer();
+void printFeedback(int userAnswer, double correctAnswer);
+int displayMenu();
+
 
 #include <iostream>
-#include <cstdlib>
-#include <ctime>
-#include <conio.h>
+
+using namespace std;
+
+
+int getUserAnswer() {
+    int answer;
+    cout << "Your answer: ";
+    cin >> answer;
+    return answer;
+}
+
+
+void printFeedback(int userAnswer, double correctAnswer) {
+    if (userAnswer == correctAnswer) {
+        cout << "Congratulations! You got it right!" << endl;
+    }
+    else {
+        cout <<  "The correct answer is " << correctAnswer << "." << endl;
+    }
+}
+
+
+int displayMenu() {
+    int choice;
+    cout << "\nMath Tutor Menu:" << endl;
+    cout << "1. Addition" << endl;
+    cout << "2. Subtraction" << endl;
+    cout << "3. Multiplication" << endl;
+    cout << "4. Division" << endl;
+    cout << "5. Quit" << endl;
+    cout << "Please select an operation: ";
+    cin >> choice;
+    return choice;
+}
+#include <iostream>
 
 using namespace std;
 
 int main() {
-   
-    srand(static_cast<unsigned int>(time(0)));
+    int userChoice;
 
     
-    int num1 = rand() % 100 + 1;
-    int num2 = rand() % 100 + 1;
+    initializeRandom();
 
-    cout << "Add these numbers: " << num1 << " + " << num2 << endl;
+    do {
+        
+        userChoice = displayMenu();
 
-    
-    cout << "Press any key to see the answer..." << endl;
+        
+        int num1, num2;
+        double correctAnswer;
+        int userAnswer;
 
-    
-    _getch();  
+        
+        switch (userChoice) {
+        case 1:  
+            num1 = generateRandomNumber();
+            num2 = generateRandomNumber();
+            correctAnswer = addNumbers(num1, num2);
+            cout << "What is " << num1 << " + " << num2 << "?" << endl;
+            userAnswer = getUserAnswer();
+            printFeedback(userAnswer, correctAnswer);
+            break;
 
-    
-    int answer = num1 + num2;
-    cout << "The answer is: " << answer << endl;
+        case 2:  
+            num1 = generateRandomNumber();
+            num2 = generateRandomNumber();
+            correctAnswer = subtractNumbers(num1, num2);
+            cout << "What is " << num1 << " - " << num2 << "?" << endl;
+            userAnswer = getUserAnswer();
+            printFeedback(userAnswer, correctAnswer);
+            break;
+
+        case 3:  
+            num1 = generateRandomNumber();
+            num2 = generateRandomNumber();
+            correctAnswer = multiplyNumbers(num1, num2);
+            cout << "What is " << num1 << " * " << num2 << "?" << endl;
+            userAnswer = getUserAnswer();
+            printFeedback(userAnswer, correctAnswer);
+            break;
+
+        case 4:  
+            num1 = generateRandomNumber();
+            num2 = generateRandomNumber();
+            
+            if (num2 == 0) num2 = 1;
+            correctAnswer = divideNumbers(num1, num2);
+            cout << "What is " << num1 << " / " << num2 << "?" << endl;
+            userAnswer = getUserAnswer();
+            printFeedback(userAnswer, correctAnswer);
+            break;
+
+        case 5:  
+            cout << "Thank you for using the Math Tutor! Goodbye!" << endl;
+            break;
+
+        default:
+            cout << "Invalid choice. Please select a valid option." << endl;
+        }
+
+    } while (userChoice != 5);  
 
     return 0;
 }
